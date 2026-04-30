@@ -15,7 +15,7 @@ import (
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("erro ao carregar .env:", err)
+		log.Println("erro ao carregar .env:", err)
 	}
 
 	dbURL := os.Getenv("DATABASE_URL")
