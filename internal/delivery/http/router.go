@@ -9,6 +9,7 @@ func NewRouter(registroH *RegistroHandler) *gin.Engine {
 	{
 		registros.POST("/create", registroH.Create)
 		registros.GET("/find-all", registroH.FindAll)
+		registros.GET("/find-count", registroH.FindCount)
 	}
 
 	return r

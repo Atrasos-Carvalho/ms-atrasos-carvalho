@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"ms-atrasos-carvalho/internal/delivery/http/dto"
 	"ms-atrasos-carvalho/internal/domain"
 	"ms-atrasos-carvalho/internal/domain/repository"
 )
@@ -23,4 +24,8 @@ func (uc *RegistroUseCase) FindAll() ([]*domain.Registro, error) {
 
 func (uc *RegistroUseCase) FindByDate(date domain.Date) ([]*domain.Registro, error) {
 	return uc.repo.FindByDate(date)
+}
+
+func (uc *RegistroUseCase) FindCount() (dto.ContadorDTO, error) {
+	return uc.repo.FindCount()
 }

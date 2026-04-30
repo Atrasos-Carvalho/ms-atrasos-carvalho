@@ -61,3 +61,13 @@ func (h *RegistroHandler) FindAll(c *gin.Context) {
 
 	c.JSON(http.StatusOK, registros)
 }
+
+func (h *RegistroHandler) FindCount(c *gin.Context) {
+	count, err := h.usecase.FindCount()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, count)
+}

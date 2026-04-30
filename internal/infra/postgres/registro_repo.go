@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+	"ms-atrasos-carvalho/internal/delivery/http/dto"
 	"ms-atrasos-carvalho/internal/domain"
 	"ms-atrasos-carvalho/internal/domain/repository"
 	"time"
@@ -73,4 +74,22 @@ func (r *RegistroRepo) FindByDate(date domain.Date) ([]*domain.Registro, error) 
 	}
 
 	return registros, rows.Err()
+}
+
+func (r *RegistroRepo) FindCount() (dto.ContadorDTO, error) {
+	query := `SELECT
+		COUNT(CASE WHEN tipo_id = 1 THEN 1 END) AS total_cedo,
+		COUNT(CASE WHEN tipo_id = 2 THEN 1 END) AS total_atraso,
+		COUNT(CASE WHEN tipo_id = 3 THEN 1 END) AS total_falta
+		FROM registro`
+
+	row := r.db.QueryRow(query)
+
+	var contador dto.ContadorDTO
+	err := row.Scan(&contador.TotalCedo, &contador.TotalAtraso, &contador.TotalFalta)
+	if err != nil {
+		return dto.ContadorDTO{}, err
+	}
+
+	return contador, nil
 }
