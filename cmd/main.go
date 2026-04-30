@@ -20,7 +20,7 @@ func main() {
 
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
-		log.Fatal("DATABASE_URL não definida")
+		log.Println("DATABASE_URL não definida")
 	}
 
 	log.Println("conectando em:", dbURL)
