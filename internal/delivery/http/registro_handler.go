@@ -34,6 +34,7 @@ func (h *RegistroHandler) Create(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+		
 	if len(existing) > 0 {
 		c.JSON(http.StatusConflict, gin.H{"error": "registro para hoje já existe"})
 		return
