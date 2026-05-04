@@ -11,6 +11,7 @@ func NewRouter(registroH *RegistroHandler) *gin.Engine {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{"GET", "POST", "OPTIONS"},
+		AllowHeaders: []string{"Origin", "Content-Type", "Accept", "Authorization"},
 	}))
 
 	registros := r.Group("/registros")
