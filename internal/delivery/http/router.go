@@ -10,7 +10,7 @@ func NewRouter(registroH *RegistroHandler) *gin.Engine {
 	
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
-		AllowMethods: []string{"GET", "POST"},
+		AllowMethods: []string{"GET", "POST", "OPTIONS"},
 	}))
 
 	registros := r.Group("/registros")
