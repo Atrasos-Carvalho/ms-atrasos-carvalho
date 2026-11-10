@@ -23,7 +23,7 @@ func (r *RegistroRepo) Create(registro *domain.Registro) error {
 }
 
 func (r *RegistroRepo) FindAll() ([]*domain.Registro, error) {
-	query := `SELECT id, data, tipo_id FROM registro`
+	query := `SELECT id, data, tipo_id FROM registro ORDER BY data DESC, id DESC`
 
 	rows, err := r.db.Query(query)
 	if err != nil {
